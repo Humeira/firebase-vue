@@ -60,7 +60,7 @@
 </style>
 
 <script>
-import firebase from "firebase";
+import {firebaseInstace} from "./firebaseConfig.js";
 export default {
   name: "App",
   data() {
@@ -69,11 +69,12 @@ export default {
     }
   },
   created() {
-    firebase.auth().currentUser ? (this.user = true) : (this.user = false);
+    firebaseInstace.auth().currentUser ? (this.user = true) : (this.user = false);
+
   },
   methods : {
     out: function () {
-       firebase.auth().signOut().then(() => {
+       firebaseInstace.auth().signOut().then(() => {
         this.$router.replace('login')
       })
     }

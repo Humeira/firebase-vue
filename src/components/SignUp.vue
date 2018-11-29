@@ -21,7 +21,7 @@
     </v-container>
 </template>
 <script>
-import firebase from "firebase";
+import {firebaseInstace} from "../firebaseConfig.js";
 export default {
   name: "signUp",
   data() {
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     signUp: function() {
-      firebase
+      firebaseInstace
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(

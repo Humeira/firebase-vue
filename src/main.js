@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import firebase from "firebase";
+import {firebaseInstace} from "./firebaseConfig";
+
 import "./plugins/vuetify";
 import App from "./App.vue";
 import Login from "./components/Login.vue";
@@ -11,17 +12,6 @@ Vue.config.productionTip = false;
 
 Vue.use(Router);
 
-const config = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
-  databaseURL: 'https://YOUR_PROJECT_ID.firebaseio.com',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_PROJECT_ID.appspot.com',
-  messagingSenderId: 'YOUR_MESSAGING_SEND_ID'
-};
-
-
-firebase.initializeApp(config);
 
 const router = new Router({
   routes: [
@@ -54,7 +44,7 @@ const router = new Router({
   ]
 });
 
-firebase.auth().onAuthStateChanged(() => {
+firebaseInstace.auth().onAuthStateChanged(() => {
   new Vue({
     router,
     render: h => h(App)
@@ -62,7 +52,7 @@ firebase.auth().onAuthStateChanged(() => {
 });
 
 router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser;
+  let currentUser = firebaseInstace.auth().currentUser;
   let isAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (isAuth && !currentUser) {
