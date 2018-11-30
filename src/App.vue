@@ -9,7 +9,7 @@
         <router-link to="/login">Login</router-link>
       </v-btn>
       <v-btn flat target="_blank">
-        <router-link to="/home">Books Collection</router-link>
+        <router-link to="/home">Movies Collection</router-link>
       </v-btn>
       <v-btn flat @click="out" v-show="user">
        <span>Sign out</span>
