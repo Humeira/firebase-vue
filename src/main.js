@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import {firebaseInstace} from "./firebaseConfig";
+import {firebaseInstance} from "./firebaseConfig";
 
 import "./plugins/vuetify";
 import App from "./App.vue";
@@ -44,7 +44,7 @@ const router = new Router({
   ]
 });
 
-firebaseInstace.auth().onAuthStateChanged(() => {
+firebaseInstance.auth().onAuthStateChanged(() => {
   new Vue({
     router,
     render: h => h(App)
@@ -52,7 +52,7 @@ firebaseInstace.auth().onAuthStateChanged(() => {
 });
 
 router.beforeEach((to, from, next) => {
-  let currentUser = firebaseInstace.auth().currentUser;
+  let currentUser = firebaseInstance.auth().currentUser;
   let isAuth = to.matched.some(record => record.meta.requiresAuth);
 
   if (isAuth && !currentUser) {

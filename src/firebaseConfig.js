@@ -10,5 +10,5 @@ const config = {
   messagingSenderId: 'YOUR_MESSAGING_SEND_ID'
 };
 
-export let firebaseInstace = firebase.initializeApp(config);
-export let database = firebaseInstace.firestore();
+export let firebaseInstance = firebase.initializeApp(config);
+export let database = firebaseInstance.firestore();
